@@ -66,6 +66,71 @@ net = get_model()
 # 2. MAIN APP FUNCTION
 # ==========================================
 def app():
+    # --- 1. CHÈN CSS ĐỂ LÀM ĐẸP BẢNG KẾT QUẢ ---
+    st.markdown("""
+    <style>
+        /* Style cho bảng kết quả */
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: sans-serif;
+        }
+        
+        /* Header của bảng */
+        table.custom-table thead th {
+            background-color: #FF4B4B; /* Màu đỏ chủ đạo */
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Các dòng dữ liệu */
+        table.custom-table tbody td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eeeeee;
+            color: #333;
+            vertical-align: middle;
+        }
+        
+        /* Hiệu ứng khi di chuột vào dòng */
+        table.custom-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Nút bấm Link */
+        a.result-btn {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #007bff; /* Màu xanh nút bấm */
+            color: white !important;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        a.result-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Badge điểm số */
+        span.score-badge {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    # -------------------------------------------
+
     st.title("📹 Object Detection Live Feed")
     st.caption("Real-time MobileNet SSD Object Detection")
 
@@ -167,12 +232,21 @@ def app():
                     if result is not None:
                         df = pd.DataFrame(result)
                         if not df.empty:
-                            df['Chi tiết'] = df['label'].apply(
-                                lambda x: f'<a href="./?nav=Wiki%20Search&tab={x}" target="_self" style="text-decoration: none; color: blue;">➡️ Xem {x}</a>'
+                            df['Action'] = df['label'].apply(
+                                lambda x: f'<a href="./?nav=Wiki%20Search&tab={x}" target="_self" class="result-btn">Wiki ➜</a>'
                             )
-                            # Display compact table
-                            display_df = df[["label", "score", "Chi tiết"]]
-                            html_table = display_df.to_html(escape=False, index=False)
+                            df['Confidence'] = df['score'].apply(
+                                lambda x: f'<span class="score-badge">{x*100:.1f}%</span>'
+                            )
+                            df['Object'] = df['label'].str.capitalize()
+
+                            # Display result
+                            display_df = df[["Object", "Confidence", "Action"]]
+
+                            # Render HTML with class 'custom-table' for CSS
+                            html_table = display_df.to_html(escape=False, index=False, classes="custom-table")
+                            
+                            # Border style
                             labels_placeholder.markdown(html_table, unsafe_allow_html=True)
                         else:
                             labels_placeholder.info("Waiting for object...")
@@ -181,4 +255,4 @@ def app():
 
     # Footer (Full Width)
     st.markdown("---")
-    st.caption("Powered by Streamlit, OpenCV, and MobileNet SSD.")
+    st.caption("Powered by 5 anh em siu nhan.")
