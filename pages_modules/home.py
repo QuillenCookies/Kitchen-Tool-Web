@@ -140,11 +140,12 @@ def app():
     st.caption("Real-time MobileNet SSD Object Detection")
 
     # --- A. LOGIC AUTOMATICALLY TURN ON CAM  ---
-    auto_start = st.session_state.get("auto_start_trigger", False)
-    desired_state = True if auto_start else None
+    should_auto_start = st.session_state.get("auto_start_trigger", False)
     
-    if auto_start:
-        st.session_state["auto_start_trigger"] = False
+    if should_auto_start:
+        desired_state = True
+    else:
+        desired_state = None
     # --------------------------------
 
     # --- B. CREATE LAYOUT ---
@@ -219,6 +220,11 @@ def app():
             async_processing=True,
             desired_playing_state=desired_state # Tự động bật cam nếu có tín hiệu
         )
+        # --- LOGIC RESET: CHỈ TẮT TRIGGER KHI CAM ĐÃ CHẠY ---
+        if should_auto_start and webrtc_ctx.state.playing:
+            # Lúc này mới tắt lệnh đi để trả lại quyền kiểm soát cho nút Stop
+            st.session_state["auto_start_trigger"] = False
+            st.rerun() # Rerun một cái để cập nhật giao diện
 
     # --- E. DISPLAY RESULT ---
     with col2:
