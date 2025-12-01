@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from pages_modules import home, wikipedia, about_us
+import pages_modules.home as home
+import pages_modules.wikipedia as wikipedia
+import pages_modules.about_us as about_us
 
 # 1. Page Configuration
 st.set_page_config(
