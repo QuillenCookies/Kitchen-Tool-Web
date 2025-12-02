@@ -1,0 +1,29 @@
+{
+    "about_us": [
+        {
+            "name": "Châu Minh Quân",
+            "job_title": "Backend & TypeScript Developer",
+            "description": "Hi, I'm Chau Minh Quan (Qan), a second-year undergraduate student and intern at the Vietnamese-German University. I've been passionate about coding for over 8 years, starting with Java, PHP, Python, and JavaScript, and now focusing on TypeScript and Go."
+        },
+        {
+            "name": "Hồng Nguyên Phúc",
+            "job_title": "Frontend & AI Engineer",
+            "description": "Hi, I'm Hong Nguyen Phuc, a second-year undergraduate student. I love to play games, basketball and listen to music. I am a member of the Gulag team, I am responsible for the ... development of the project."
+        },
+        {
+            "name": "Hồ Nguyễn Phú",
+            "job_title": "AI & Data Engineer",
+            "description": "I am a VGU sophomore. My dream is to be a great AI scientist and inventor. Dr. Heinz Doofenschmirtz is my role model. In this project, I take responsibility in back-end, database management and real-time effects."
+        },
+        {
+            "name": "Cao Tuệ Anh",
+            "job_title": "Data Engineering Interest",
+            "description": "I'm currently in my first year at VGU, where I'm pursuing my studies with a strong interest in the field of data engineering. In this project, I took part in UX/UI design."
+        },
+        {
+            "name": "Phạm Trọng Quý",
+            "job_title": "Frontend & Data Science Enthusiast",
+            "description": "Hi, I'm Pham Trong Quy, a second-year undergraduate student. My dream is to be a Data scientist and singer. I love to play games and listen to music. I am a member of the Gulag team, and I am responsible for the front-end development of the project."
+        }
+    ]
+}
