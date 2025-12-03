@@ -4,7 +4,7 @@ from pathlib import Path
 
 def app():
     # Load data from JSON file
-    json_file_path = Path(__file__).parent / "about_us.json"
+    json_file_path = Path(__file__).parent / "data" / "about_us.json"
     with open(json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)["about_us"]
 
