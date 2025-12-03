@@ -18,7 +18,7 @@ import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer, RTCConfiguration
 from streamlit_webrtc import __version__ as st_webrtc_version
 
-from sample_utils.download import download_file
+from utils.download import download_file
 
 # ==========================================
 # 1. GLOBAL CONFIG & CONSTANTS (Run once)
