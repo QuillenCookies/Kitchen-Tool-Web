@@ -1,0 +1,54 @@
+/* 1. Tác động vào khung chứa các Tab */
+div[data-baseweb="tab-list"] {
+    display: flex !important;
+    width: 100% !important; /* Bắt buộc chiếm hết chiều ngang */
+    gap: 8px; /* Khoảng cách giữa các nút */
+    
+    /* Khoảng đệm để hiệu ứng nút bay lên không bị mất ngọn */
+    padding-top: 10px !important;
+    padding-bottom: 5px !important;
+}
+
+/* 2. Tác động vào từng nút Tab */
+button[data-baseweb="tab"] {
+    /* THẦN CHÚ: flex: 1 giúp các nút tự chia nhau khoảng trống để lấp đầy dòng */
+    flex: 1 !important; 
+    
+    background-color: #f0f2f6; 
+    border-radius: 20px !important; 
+    border: 1px solid #e0e0e0 !important; 
+    
+    /* Canh chỉnh chữ */
+    font-size: 16px !important; 
+    font-weight: 700 !important;    
+    color: #666 !important;         
+    
+    /* Giảm padding ngang một chút để đủ chỗ cho nhiều tab */
+    padding: 8px 5px !important; 
+    margin: 0 !important;
+    
+    white-space: nowrap !important; /* Giữ chữ trên 1 dòng, không bị xuống dòng */
+    transition: all 0.2s ease;
+}
+
+/* 3. Hiệu ứng Hover (Giờ sẽ không bị cắt nữa) */
+button[data-baseweb="tab"]:hover {
+    background-color: #e0e2e6;
+    transform: translateY(-3px); /* Bay cao hơn xíu cho đẹp */
+    color: #333 !important;
+    border-color: #aaa !important;
+}
+
+/* 4. Tab đang chọn */
+button[data-baseweb="tab"][aria-selected="true"] {
+    background-color: #FF4B4B !important; 
+    color: white !important;              
+    border-color: #FF4B4B !important;
+    box-shadow: 0 4px 10px rgba(255, 75, 75, 0.4); /* Bóng đổ mềm mại hơn */
+    transform: translateY(-2px); /* Tab đang chọn cũng nổi lên chút */
+}
+
+/* 5. Ẩn gạch chân */
+div[data-baseweb="tab-highlight"] {
+    display: none !important;
+}
