@@ -4,7 +4,7 @@ import streamlit as st
 
 def app():
     # Load Wiki Data from JSON file
-    json_file_path = Path(__file__).parent / "wiki_data.json"
+    json_file_path = Path(__file__).parent / "data" / "wiki_data.json"
     with open(json_file_path, "r", encoding="utf-8") as file:
         wiki_data = json.load(file)["wiki_data"]
     
